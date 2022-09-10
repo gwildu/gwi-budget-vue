@@ -128,12 +128,9 @@
 </template>
 
 <script lang="ts">
-import {
-  Entry,
-  TransactionType,
-} from "../../store/types";
-import {mapMutations} from "vuex";
-import {defineComponent} from "vue";
+import { defineComponent, PropType } from "vue";
+import { Entry, TransactionType } from "../../store/types";
+import { mapMutations } from "vuex";
 
 const now = new Date();
 
@@ -171,10 +168,7 @@ export default defineComponent({
     },
   },
   methods: {
-    ...mapMutations([
-        "addExpense",
-        "addIncome"
-    ]),
+    ...mapMutations(["addExpense", "addIncome"]),
     addEntry() {
       const baseProps = {
         id: this.isUpdate ? (this.entry as Entry).id : self.crypto.randomUUID(),
@@ -193,15 +187,22 @@ export default defineComponent({
           month: this.executionMonth,
         };
       } else {
-        specificProps.executionInterval: this.executionInterval;
+        specificProps.executionInterval = this.executionInterval;
         specificProps.firstExecution = {
           year: this.firstExecutionYear,
-          month: this.firstExecutionMonth}
+          month: this.firstExecutionMonth,
+        };
+        if (this.hasLastExecution) {
+          specificProps.lastExecution = {
+            year: this.lastExecutionYear,
+            month: this.lastExecutionMonth,
+          };
+        }
       }
-      if(this.transactionType === "income") {
-        this.addIncome({...baseProps, ...specificProps})
+      if (this.transactionType === "income") {
+        this.addIncome({ ...baseProps, ...specificProps });
       } else {
-        this.addExpense({...baseProps, ...specificProps})
+        this.addExpense({ ...baseProps, ...specificProps });
       }
     },
     updateEntry() {},

@@ -28,399 +28,35 @@ export const store = createStore({
         initialSaldo: 0,
       },
       entries: {
-        allIncomes: [
-          {
-            id: "36b8f84d-df4e-4d49-b662-bcde71a8764f",
-            name: "Lohn",
-            description: "digitec galaxus Lohn ab Mai 2022",
-            amount: 7922.1,
-            transactionType: "income",
-            executionType: "multiple",
-            executionInterval: 1,
-            firstExecution: {
-              year: 2022,
-              month: 7,
-            },
-          },
-        ],
-        allExpenses: [
-          {
-            id: "dea4f97d-793e-427f-ab35-5786f6d867d7",
-            name: "Basler",
-            description: "Lebensversicherung Toon bei Basler",
-            amount: 209.7,
-            transactionType: "expense",
-            executionType: "multiple",
-            executionInterval: 1,
-            firstExecution: {
-              year: 2022,
-              month: 7,
-            },
-          },
-        ],
+        allIncomes: [],
+        allExpenses: [],
         incomes: {
-          [0]: [
-            {
-              id: "36b8f84d-df4e-4d49-b662-bcde71a8764f",
-              name: "Lohn",
-              description: "digitec galaxus Lohn ab Mai 2022",
-              amount: 7922.1,
-              transactionType: "income",
-              executionType: "multiple",
-              executionInterval: 1,
-              firstExecution: {
-                year: 2022,
-                month: 7,
-              },
-            },
-          ],
-          [1]: [
-            {
-              id: "36b8f84d-df4e-4d49-b662-bcde71a8764f",
-              name: "Lohn",
-              description: "digitec galaxus Lohn ab Mai 2022",
-              amount: 7922.1,
-              transactionType: "income",
-              executionType: "multiple",
-              executionInterval: 1,
-              firstExecution: {
-                year: 2022,
-                month: 7,
-              },
-            },
-          ],
-          [2]: [
-            {
-              id: "36b8f84d-df4e-4d49-b662-bcde71a8764f",
-              name: "Lohn",
-              description: "digitec galaxus Lohn ab Mai 2022",
-              amount: 7922.1,
-              transactionType: "income",
-              executionType: "multiple",
-              executionInterval: 1,
-              firstExecution: {
-                year: 2022,
-                month: 7,
-              },
-            },
-          ],
-          [3]: [
-            {
-              id: "36b8f84d-df4e-4d49-b662-bcde71a8764f",
-              name: "Lohn",
-              description: "digitec galaxus Lohn ab Mai 2022",
-              amount: 7922.1,
-              transactionType: "income",
-              executionType: "multiple",
-              executionInterval: 1,
-              firstExecution: {
-                year: 2022,
-                month: 7,
-              },
-            },
-          ],
-          [4]: [
-            {
-              id: "36b8f84d-df4e-4d49-b662-bcde71a8764f",
-              name: "Lohn",
-              description: "digitec galaxus Lohn ab Mai 2022",
-              amount: 7922.1,
-              transactionType: "income",
-              executionType: "multiple",
-              executionInterval: 1,
-              firstExecution: {
-                year: 2022,
-                month: 7,
-              },
-            },
-          ],
-          [5]: [
-            {
-              id: "36b8f84d-df4e-4d49-b662-bcde71a8764f",
-              name: "Lohn",
-              description: "digitec galaxus Lohn ab Mai 2022",
-              amount: 7922.1,
-              transactionType: "income",
-              executionType: "multiple",
-              executionInterval: 1,
-              firstExecution: {
-                year: 2022,
-                month: 7,
-              },
-            },
-          ],
-          [6]: [
-            {
-              id: "36b8f84d-df4e-4d49-b662-bcde71a8764f",
-              name: "Lohn",
-              description: "digitec galaxus Lohn ab Mai 2022",
-              amount: 7922.1,
-              transactionType: "income",
-              executionType: "multiple",
-              executionInterval: 1,
-              firstExecution: {
-                year: 2022,
-                month: 7,
-              },
-            },
-          ],
-          [7]: [
-            {
-              id: "36b8f84d-df4e-4d49-b662-bcde71a8764f",
-              name: "Lohn",
-              description: "digitec galaxus Lohn ab Mai 2022",
-              amount: 7922.1,
-              transactionType: "income",
-              executionType: "multiple",
-              executionInterval: 1,
-              firstExecution: {
-                year: 2022,
-                month: 7,
-              },
-            },
-          ],
-          [8]: [
-            {
-              id: "36b8f84d-df4e-4d49-b662-bcde71a8764f",
-              name: "Lohn",
-              description: "digitec galaxus Lohn ab Mai 2022",
-              amount: 7922.1,
-              transactionType: "income",
-              executionType: "multiple",
-              executionInterval: 1,
-              firstExecution: {
-                year: 2022,
-                month: 7,
-              },
-            },
-          ],
-          [9]: [
-            {
-              id: "36b8f84d-df4e-4d49-b662-bcde71a8764f",
-              name: "Lohn",
-              description: "digitec galaxus Lohn ab Mai 2022",
-              amount: 7922.1,
-              transactionType: "income",
-              executionType: "multiple",
-              executionInterval: 1,
-              firstExecution: {
-                year: 2022,
-                month: 7,
-              },
-            },
-          ],
-          [10]: [
-            {
-              id: "36b8f84d-df4e-4d49-b662-bcde71a8764f",
-              name: "Lohn",
-              description: "digitec galaxus Lohn ab Mai 2022",
-              amount: 7922.1,
-              transactionType: "income",
-              executionType: "multiple",
-              executionInterval: 1,
-              firstExecution: {
-                year: 2022,
-                month: 7,
-              },
-            },
-          ],
-          [11]: [
-            {
-              id: "36b8f84d-df4e-4d49-b662-bcde71a8764f",
-              name: "Lohn",
-              description: "digitec galaxus Lohn ab Mai 2022",
-              amount: 7922.1,
-              transactionType: "income",
-              executionType: "multiple",
-              executionInterval: 1,
-              firstExecution: {
-                year: 2022,
-                month: 7,
-              },
-            },
-          ],
+          [0]: [],
+          [1]: [],
+          [2]: [],
+          [3]: [],
+          [4]: [],
+          [5]: [],
+          [6]: [],
+          [7]: [],
+          [8]: [],
+          [9]: [],
+          [10]: [],
+          [11]: [],
         },
         expenses: {
-          [0]: [
-            {
-              id: "dea4f97d-793e-427f-ab35-5786f6d867d7",
-              name: "Basler",
-              description: "Lebensversicherung Toon bei Basler",
-              amount: 209.7,
-              transactionType: "expense",
-              executionType: "multiple",
-              executionInterval: 1,
-              firstExecution: {
-                year: 2022,
-                month: 7,
-              },
-            },
-          ],
-          [1]: [
-            {
-              id: "dea4f97d-793e-427f-ab35-5786f6d867d7",
-              name: "Basler",
-              description: "Lebensversicherung Toon bei Basler",
-              amount: 209.7,
-              transactionType: "expense",
-              executionType: "multiple",
-              executionInterval: 1,
-              firstExecution: {
-                year: 2022,
-                month: 7,
-              },
-            },
-          ],
-          [2]: [
-            {
-              id: "dea4f97d-793e-427f-ab35-5786f6d867d7",
-              name: "Basler",
-              description: "Lebensversicherung Toon bei Basler",
-              amount: 209.7,
-              transactionType: "expense",
-              executionType: "multiple",
-              executionInterval: 1,
-              firstExecution: {
-                year: 2022,
-                month: 7,
-              },
-            },
-          ],
-          [3]: [
-            {
-              id: "dea4f97d-793e-427f-ab35-5786f6d867d7",
-              name: "Basler",
-              description: "Lebensversicherung Toon bei Basler",
-              amount: 209.7,
-              transactionType: "expense",
-              executionType: "multiple",
-              executionInterval: 1,
-              firstExecution: {
-                year: 2022,
-                month: 7,
-              },
-            },
-          ],
-          [4]: [
-            {
-              id: "dea4f97d-793e-427f-ab35-5786f6d867d7",
-              name: "Basler",
-              description: "Lebensversicherung Toon bei Basler",
-              amount: 209.7,
-              transactionType: "expense",
-              executionType: "multiple",
-              executionInterval: 1,
-              firstExecution: {
-                year: 2022,
-                month: 7,
-              },
-            },
-          ],
-          [5]: [
-            {
-              id: "dea4f97d-793e-427f-ab35-5786f6d867d7",
-              name: "Basler",
-              description: "Lebensversicherung Toon bei Basler",
-              amount: 209.7,
-              transactionType: "expense",
-              executionType: "multiple",
-              executionInterval: 1,
-              firstExecution: {
-                year: 2022,
-                month: 7,
-              },
-            },
-          ],
-          [6]: [
-            {
-              id: "dea4f97d-793e-427f-ab35-5786f6d867d7",
-              name: "Basler",
-              description: "Lebensversicherung Toon bei Basler",
-              amount: 209.7,
-              transactionType: "expense",
-              executionType: "multiple",
-              executionInterval: 1,
-              firstExecution: {
-                year: 2022,
-                month: 7,
-              },
-            },
-          ],
-          [7]: [
-            {
-              id: "dea4f97d-793e-427f-ab35-5786f6d867d7",
-              name: "Basler",
-              description: "Lebensversicherung Toon bei Basler",
-              amount: 209.7,
-              transactionType: "expense",
-              executionType: "multiple",
-              executionInterval: 1,
-              firstExecution: {
-                year: 2022,
-                month: 7,
-              },
-            },
-          ],
-          [8]: [
-            {
-              id: "dea4f97d-793e-427f-ab35-5786f6d867d7",
-              name: "Basler",
-              description: "Lebensversicherung Toon bei Basler",
-              amount: 209.7,
-              transactionType: "expense",
-              executionType: "multiple",
-              executionInterval: 1,
-              firstExecution: {
-                year: 2022,
-                month: 8,
-              },
-            },
-          ],
-          [9]: [
-            {
-              id: "dea4f97d-793e-427f-ab35-5786f6d867d7",
-              name: "Basler",
-              description: "Lebensversicherung Toon bei Basler",
-              amount: 209.7,
-              transactionType: "expense",
-              executionType: "multiple",
-              executionInterval: 1,
-              firstExecution: {
-                year: 2022,
-                month: 7,
-              },
-            },
-          ],
-          [10]: [
-            {
-              id: "dea4f97d-793e-427f-ab35-5786f6d867d7",
-              name: "Basler",
-              description: "Lebensversicherung Toon bei Basler",
-              amount: 209.7,
-              transactionType: "expense",
-              executionType: "multiple",
-              executionInterval: 1,
-              firstExecution: {
-                year: 2022,
-                month: 7,
-              },
-            },
-          ],
-          [11]: [
-            {
-              id: "dea4f97d-793e-427f-ab35-5786f6d867d7",
-              name: "Basler",
-              description: "Lebensversicherung Toon bei Basler",
-              amount: 209.7,
-              transactionType: "expense",
-              executionType: "multiple",
-              executionInterval: 1,
-              firstExecution: {
-                year: 2022,
-                month: 7,
-              },
-            },
-          ],
+          [0]: [],
+          [1]: [],
+          [2]: [],
+          [3]: [],
+          [4]: [],
+          [5]: [],
+          [6]: [],
+          [7]: [],
+          [8]: [],
+          [9]: [],
+          [10]: [],
+          [11]: [],
         },
       },
     };
@@ -485,9 +121,16 @@ export const store = createStore({
     deleteIncome(state: State, entry: Entry) {
       deleteIncomeEntry(state, entry);
     },
+    deleteExpense(state: State, entry: Entry) {
+      deleteExpensesEntry(state, entry);
+    },
     updateIncome(state: State, entry: Entry) {
       deleteIncomeEntry(state, entry);
       addIncomeEntry(state, entry);
+    },
+    updateExpense(state: State, entry: Entry) {
+      deleteExpensesEntry(state, entry);
+      addExpenseEntry(state, entry);
     },
     initializeStore: async (state) => {
       const item = localStorage.getItem(LOCAL_STORAGE_KEY);

@@ -10,28 +10,37 @@
 
 <script lang="ts">
 import View from "./View.vue";
-import { MonthOfYear, State } from "../../store/types";
-export default {
+import { MonthOfYear } from "../../store/types";
+import { defineComponent } from "vue";
+import { mapGetters } from "vuex";
+export default defineComponent({
   name: "Controller",
   components: { View },
   computed: {
+    ...mapGetters({
+      startState: "start",
+      endState: "end",
+      incomeState: "income",
+      expensesState: "expenses",
+      runningSaldoState: "runningSaldo",
+    }),
     start(): MonthOfYear {
-      return this.$store.getters.start;
+      return this.startState;
     },
     end(): MonthOfYear {
-      return this.$store.getters.end;
+      return this.endState;
     },
     income(): number[] {
-      return this.$store.getters.income;
+      return this.incomeState;
     },
     expenses(): number[] {
-      return this.$store.getters.expenses.map((expense) => -expense);
+      return this.expensesState.map((expense) => -expense);
     },
     runningSaldo(): number[] {
-      return this.$store.getters.runningSaldo;
+      return this.runningSaldoState;
     },
   },
-};
+});
 </script>
 
 <style scoped></style>

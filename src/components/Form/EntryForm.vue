@@ -1,18 +1,18 @@
 <template>
   <div class="container">
     <span>name: <input type="text" v-model="name" />&nbsp;</span>
-    <span>description: <input type="text" v-model="description" />&nbsp; </span>
+    <span>description: <textarea v-model="description" />&nbsp; </span>
     <span
       >amount:
       <input type="number" v-model="amount" :style="{ width: '100px' }" />&nbsp;
     </span>
     <span
-      ><select v-model="type">
+      ><select v-model="executionType">
         <option value="single">single</option>
         <option value="multiple">multiple</option></select
       >&nbsp;
     </span>
-    <span v-if="type === 'single'">
+    <span v-if="executionType === 'single'">
       <span
         >executionMonth:
         <select v-model="executionMonth">
@@ -40,7 +40,7 @@
       </span>
     </span>
   </div>
-  <div class="container" v-if="type === 'multiple'">
+  <div class="container" v-if="executionType === 'multiple'">
     <span
       >executionInterval:
       <select v-model="executionInterval">
@@ -111,31 +111,24 @@
       </span>
     </span>
   </div>
-  <div>
-    <span>name: {{ name }}</span
-    >&nbsp;| <span>description: {{ description }}</span
-    >&nbsp;| <span>amount: {{ amount }}</span
-    >&nbsp;| <span>type: {{ type }}</span
-    >&nbsp;| <span>executionMomth: {{ executionMonth }}</span
-    >&nbsp;| <span>executionYear: {{ executionYear }}</span
-    >&nbsp;| <span>executionInterval: {{ executionInterval }}</span
-    >&nbsp;| <span>firstExecutionMonth: {{ firstExecutionMonth }}</span
-    >&nbsp;| <span>firstExecutionYear: {{ firstExecutionYear }}</span
-    >&nbsp;| <span>lastExecutionMonth: {{ lastExecutionMonth }}</span
-    >&nbsp;| <span>lastExecutionYear: {{ lastExecutionYear }}</span>
-  </div>
-  <button @click="">save</button>
+  <button @click="saveEntry">save</button>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { Entry, TransactionType } from "../../store/types";
+import {
+  Entry,
+  IEntryMultiple,
+  IEntrySingle,
+  Month,
+  TransactionType,
+} from "../../store/types";
 import { mapMutations } from "vuex";
 
 const now = new Date();
 
 export default defineComponent({
-  name: "Form",
+  name: "EntryForm",
   props: {
     transactionType: {
       type: String as PropType<TransactionType>,
@@ -151,15 +144,22 @@ export default defineComponent({
       name: this.entry?.name || "name",
       description: this.entry?.description || "description",
       amount: this.entry?.amount || 0,
-      type: this.entry?.type || "single",
-      executionMonth: this.entry?.execution?.month || now.getMonth(),
-      executionYear: this.entry?.execution?.year || now.getFullYear(),
-      executionInterval: this.entry?.executionInterval || 1,
-      firstExecutionMonth: this.entry?.firstExecution?.month || now.getMonth(),
-      firstExecutionYear: this.entry?.firstExecution?.year || now.getFullYear(),
+      executionType: this.entry?.executionType || "single",
+      executionMonth:
+        (this.entry as IEntrySingle)?.execution?.month || now.getMonth(),
+      executionYear:
+        (this.entry as IEntrySingle)?.execution?.year || now.getFullYear(),
+      executionInterval: (this.entry as IEntryMultiple)?.executionInterval || 1,
+      firstExecutionMonth:
+        (this.entry as IEntryMultiple)?.firstExecution?.month || now.getMonth(),
+      firstExecutionYear:
+        (this.entry as IEntryMultiple)?.firstExecution?.year ||
+        now.getFullYear(),
       hasLastExecution: false,
-      lastExecutionMonth: this.entry?.lastExecution?.month || 0,
-      lastExecutionYear: this.entry.lastExecution.year || 0,
+      lastExecutionMonth:
+        (this.entry as IEntryMultiple)?.lastExecution?.month || 0,
+      lastExecutionYear:
+        (this.entry as IEntryMultiple)?.lastExecution?.year || 0,
     };
   },
   computed: {
@@ -168,8 +168,13 @@ export default defineComponent({
     },
   },
   methods: {
-    ...mapMutations(["addExpense", "addIncome"]),
-    addEntry() {
+    ...mapMutations([
+      "addExpense",
+      "addIncome",
+      "updateIncome",
+      "updateExpense",
+    ]),
+    saveEntry() {
       const baseProps = {
         id: this.isUpdate ? (this.entry as Entry).id : self.crypto.randomUUID(),
         name: this.name,
@@ -182,30 +187,40 @@ export default defineComponent({
         executionType: this.executionType,
       };
       if (this.executionType === "single") {
-        specificProps.execution = {
+        (specificProps as IEntrySingle).execution = {
           year: this.executionYear,
-          month: this.executionMonth,
+          month: this.executionMonth as Month,
         };
       } else {
-        specificProps.executionInterval = this.executionInterval;
-        specificProps.firstExecution = {
+        (specificProps as IEntryMultiple).executionInterval =
+          this.executionInterval;
+        (specificProps as IEntryMultiple).firstExecution = {
           year: this.firstExecutionYear,
-          month: this.firstExecutionMonth,
+          month: this.firstExecutionMonth as Month,
         };
         if (this.hasLastExecution) {
-          specificProps.lastExecution = {
+          (specificProps as IEntryMultiple).lastExecution = {
             year: this.lastExecutionYear,
-            month: this.lastExecutionMonth,
+            month: this.lastExecutionMonth as Month,
           };
         }
       }
+      const entryToSave = { ...baseProps, ...specificProps };
       if (this.transactionType === "income") {
-        this.addIncome({ ...baseProps, ...specificProps });
+        if (this.isUpdate) {
+          this.updateIncome(entryToSave);
+        } else {
+          this.addIncome(entryToSave);
+        }
       } else {
-        this.addExpense({ ...baseProps, ...specificProps });
+        if (this.isUpdate) {
+          this.updateExpense(entryToSave);
+        } else {
+          this.addExpense(entryToSave);
+        }
       }
+      this.$emit("save", entryToSave);
     },
-    updateEntry() {},
   },
 });
 </script>

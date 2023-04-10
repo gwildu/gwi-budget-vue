@@ -11,11 +11,14 @@ import {
 import { defineComponent } from "vue";
 import type { PropType } from "vue";
 import type { MonthOfYear } from "../../store/types";
+import InitialSaldo from "./InitialSaldo.vue";
+import SetStartAndEnd from "./SetStartAndEnd.vue";
+import FormContainer from "../Form/FormContainer.vue";
 
 ChartJS.register(...registerables);
 
 export default defineComponent({
-  components: { Bar },
+  components: { FormContainer, SetStartAndEnd, InitialSaldo, Bar },
   name: "View",
   props: {
     start: {
@@ -71,6 +74,10 @@ export default defineComponent({
 </script>
 
 <template>
+  <FormContainer>
+    <InitialSaldo />
+    <SetStartAndEnd />
+  </FormContainer>
   <Bar
     :chart-options="chartOptions"
     :chart-data="chartData"

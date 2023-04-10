@@ -5,7 +5,7 @@ export const CHART_CONFIG = {
   chartId: "bar-chart",
   datasetIdKey: "label",
   width: 1000,
-  height: 400,
+  height: 300,
   cssClasses: "",
   styles: {},
   plugins: [],

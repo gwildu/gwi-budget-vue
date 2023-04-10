@@ -13,6 +13,7 @@ import View from "./View.vue";
 import { MonthOfYear } from "../../store/types";
 import { defineComponent } from "vue";
 import { mapGetters } from "vuex";
+
 export default defineComponent({
   name: "Controller",
   components: { View },

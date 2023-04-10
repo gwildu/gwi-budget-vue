@@ -1,15 +1,18 @@
 <template>
-  <div :title="output.description" v-if="!isEditing">
-    {{ text }}&nbsp;<button @click="deleteEntry">⨯</button>&nbsp;<button
-      @click="toggle"
-    >
-      edit
-    </button>
+  <div class="line" :title="output.description" v-if="!isEditing">
+    <div class="text">
+      {{ text }}
+    </div>
+    <div v-if="!outputOnly" class="buttons">
+      <button @click="deleteEntry">⨯</button>
+      <button @click="toggle">edit</button>
+      <button @click="copyId" title="copy to clipboard">ID</button>
+    </div>
   </div>
   <EntryForm
     v-if="isEditing"
     :entry="output"
-    transaction-type="this.output.transactionType"
+    :transaction-type="this.output.transactionType"
     @save="toggle"
   />
 </template>
@@ -35,6 +38,10 @@ export default defineComponent({
       type: Object as PropType<Entry>,
       required: true,
     },
+    outputOnly: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -53,15 +60,17 @@ export default defineComponent({
     toggle() {
       this.isEditing = !this.isEditing;
     },
+    copyId() {
+      navigator.clipboard.writeText(this.output.id);
+    },
   },
   computed: {
     text() {
-      const { name, description, amount, executionType, transactionType } =
-        this.output;
+      const { name, amount, executionType, transactionType } = this.output;
+      //console.log({ output: this.output });
       const baseText = `${name} | ${amount.toFixed(
         2
       )} | ${transactionType} | ${executionType}`;
-      let fullText;
       if (executionType === "single") {
         const {
           execution: { year, month },
@@ -82,4 +91,21 @@ export default defineComponent({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.line {
+  display: flex;
+  justify-content: flex-start;
+  margin: 8px 0;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+  padding: 8px;
+}
+.text {
+  min-width: 600px;
+}
+.buttons {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+}
+</style>

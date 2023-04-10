@@ -23,7 +23,7 @@ export interface IEntrySingle extends IEntryBase {
   execution: MonthOfYear;
 }
 
-export type ExecutionInterval = 1 | 2 | 3 | 4 | 6;
+export type ExecutionInterval = 1 | 2 | 3 | 4 | 6 | 12;
 
 export interface IEntryMultiple extends IEntryBase {
   executionType: "multiple";
